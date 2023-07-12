@@ -83,11 +83,11 @@ while (true)
     {
         break;
     }
-    else if (playerXorO == 'X' && gameStatusRes.currentGameStatus == 1)
+    else if ((playerXorO == 'X' && gameStatusRes.currentGameStatus == 1) || (playerXorO == 'O' && gameStatusRes.currentGameStatus == 2))
     {
         continuedThisRound = false;
         // get best move
-        int[] bestMoveArr = await bestMoveFinder.getBestMove(gameStatusRes.gameBoard, 'X');
+        int[] bestMoveArr = await bestMoveFinder.getBestMove(gameStatusRes.gameBoard, playerXorO);
 
         // create move obj
         PlayerMove bestPM = new();
@@ -95,24 +95,7 @@ while (true)
         bestPM.CustomTaunt = "Thy foes have bested thee in tic tac toe";
         bestPM.Coordinate = bestMoveArr;
 
-        // post best move
-        var postMove = await apiCaller.Post(playMoveUrl, bestPM);
-        if (postMove is null || postMove.roomCode is null)
-        {
-            Console.WriteLine("Failed to post move");
-        }
-    }
-    else if (playerXorO == 'O' && gameStatusRes.currentGameStatus == 2)
-    {
-        continuedThisRound = false;
-        // get best move
-        int[] bestMoveArr = await bestMoveFinder.getBestMove(gameStatusRes.gameBoard, 'O');
-
-        // create obj
-        PlayerMove bestPM = new();
-        bestPM.DoesTauntOpponent = true;
-        bestPM.CustomTaunt = "Thy foes have bested thee in tic tac toe";
-        bestPM.Coordinate = bestMoveArr;
+        Console.WriteLine($"[{bestPM.Coordinate[0]}, {bestPM.Coordinate[1]}]");
 
         // post best move
         var postMove = await apiCaller.Post(playMoveUrl, bestPM);

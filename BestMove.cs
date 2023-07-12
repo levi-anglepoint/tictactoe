@@ -218,7 +218,7 @@
             //top left corner
             else if (board[0][0] == '\0' && board[0][1] == '\0' && board[1][0] == '\0')
             {
-                return (new int[] { 2, 2 });
+                return (new int[] { 0, 0 });
             }
             //top right corner 
             else if (board[0][2] == '\0' && board[0][1] == '\0' && board[1][2] == '\0')
