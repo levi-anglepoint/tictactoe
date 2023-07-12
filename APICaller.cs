@@ -1,6 +1,7 @@
 ﻿using System.Net.Http.Headers;
+using System.Net.Http.Json;
+using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace TicTacToeBot_EmmaLevi
 {
@@ -21,7 +22,8 @@ namespace TicTacToeBot_EmmaLevi
             HttpResponseMessage res = null;
             if (body != null)
             {
-                var content = new StringContent(body.ToString());
+                string jsonPost = JsonSerializer.Serialize(body);
+                var content = new StringContent(jsonPost, Encoding.UTF8, "application/json");
                 res = await client.PostAsync(url, content);
             }
             else
@@ -29,9 +31,17 @@ namespace TicTacToeBot_EmmaLevi
                 res = await client.PostAsync(url, null);
             }
 
-            var json = await res.Content.ReadAsStringAsync();
+            if (!res.IsSuccessStatusCode)
+            {
+                Console.WriteLine("Failed to post");
+                Console.WriteLine(res.StatusCode);
+                Console.WriteLine(res.ReasonPhrase);
+                Console.WriteLine(res.ToString());
 
-            Console.Write(json);
+                return null;
+            }
+
+            var json = await res.Content.ReadAsStringAsync();
 
             try
             {
@@ -61,7 +71,6 @@ namespace TicTacToeBot_EmmaLevi
             string url = baseUrl + endpoint;
 
             var json = await client.GetStringAsync(url);
-            Console.Write(json);
 
             try
             {

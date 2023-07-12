@@ -4,7 +4,26 @@
     {
         public async Task<int[]> getBestMove(char[][] board, char playerState)
         {
-            int[] bestMove;
+            // temp to see if we can play the game
+            // i is the row, j is the column
+            for (int i = 0; i < board.Length; i++)
+            {
+                char[] charArr = board[i];
+                for (int j = 0; j < charArr.Length; j++)
+                {
+                    char character = charArr[j];
+                    if (character == '\0')
+                    {
+                        return new int[] {i, j};
+                    }
+                }
+            }
+
+
+
+
+
+            int[] bestMove = { 0, 0 };
             /*char [][] possibleWinStates = ['X','']*/
 
             //check if we can win
@@ -31,7 +50,7 @@
                 (board[2][0] == '\0' && board[2][1] == playerState && board[2][2] == playerState)
                )
             {
-                return bestMove
+                return bestMove;
             }
             
             //check if we are a move away from losing

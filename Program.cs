@@ -4,6 +4,7 @@ string playerName = "Emvi"; // green with Emvi
 string roomCode = "";
 bool validInput = false;
 APICaller apiCaller = new();
+BestMove bestMoveFinder = new();
 
 char playerXorO = 'y';
 
@@ -64,9 +65,14 @@ while (validInput == false)
     }
 }
 
+Console.WriteLine($"Room Code: {roomCode}");
 
-string gameStatusUrl = $"/GetGameStatus/{roomCode}";
-bool continueGameEndpointHit = false;
+
+string gameStatusUrl = $"GetGameStatus/{roomCode}";
+string playMoveUrl = $"SetMove/{roomCode}/{playerName}";
+string continueUrl = $"Continue/{roomCode}/{playerName}";
+
+int currentRound = 0;
 
 while (true)
 {
@@ -78,25 +84,52 @@ while (true)
     }
     else if (playerXorO == 'X' && gameStatusRes.currentGameStatus == 1)
     {
-        continueGameEndpointHit = false; // started a new game, reset continueGameEndpointHit variable
+        // get best move
+        int[] bestMoveArr = await bestMoveFinder.getBestMove(gameStatusRes.gameBoard, 'X');
 
-        // todo: get best move
+        // create move obj
+        PlayerMove bestPM = new();
+        bestPM.DoesTauntOpponent = true;
+        bestPM.CustomTaunt = "Thy foes have bested thee in tic tac toe";
+        bestPM.Coordinate = bestMoveArr;
 
-        // todo: post best move
+        // post best move
+        var postMove = await apiCaller.Post(playMoveUrl, bestPM);
+        if (postMove is null || postMove.roomCode is null)
+        {
+            Console.WriteLine("Failed to post move");
+        }
     }
     else if (playerXorO == 'O' && gameStatusRes.currentGameStatus == 2)
     {
-        continueGameEndpointHit = false; // started a new game, reset continueGameEndpointHit variable
+        // get best move
+        int[] bestMoveArr = await bestMoveFinder.getBestMove(gameStatusRes.gameBoard, 'O');
 
-        // todo: get best move
+        // create obj
+        PlayerMove bestPM = new();
+        bestPM.DoesTauntOpponent = true;
+        bestPM.CustomTaunt = "Thy foes have bested thee in tic tac toe";
+        bestPM.Coordinate = bestMoveArr;
 
-        // todo: post best move
+        // post best move
+        var postMove = await apiCaller.Post(playMoveUrl, bestPM);
+        if (postMove is null || postMove.roomCode is null)
+        {
+            Console.WriteLine("Failed to post move");
+        }
     }
-    else if ((gameStatusRes.currentGameStatus == 0 || gameStatusRes.currentGameStatus == 3) && !continueGameEndpointHit) // game is over OR game is waiting for other playerand have not yet continued the 
+    else if ((gameStatusRes.currentGameStatus == 0 && currentRound < gameStatusRes.currentRound) || gameStatusRes.currentGameStatus == 3)
     {
         // hit continue game endpoint
+        var continueResponse = await apiCaller.Post(continueUrl);
+        if (continueResponse != null)
+        {
+            currentRound++;
+        }
+    }
+    else if (gameStatusRes.currentGameStatus == 0)
+    {
 
-        continueGameEndpointHit = true;
     }
 
     Thread.Sleep(500);
