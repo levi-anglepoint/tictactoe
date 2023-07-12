@@ -1,5 +1,6 @@
-﻿using System.Net;
-using System.Net.Http.Headers;
+﻿using System.Net.Http.Headers;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace TicTacToeBot_EmmaLevi
 {
@@ -7,7 +8,7 @@ namespace TicTacToeBot_EmmaLevi
     {
         private HttpClient client;
 
-        public async Task<string> PostGenerate(string endpoint)
+        public async Task<ResponseObject> Post(string endpoint)
         {
             client = new HttpClient();
 
@@ -22,10 +23,24 @@ namespace TicTacToeBot_EmmaLevi
 
             Console.Write(json);
 
-            return json;
+            try
+            {
+                var parsedJson = JsonSerializer.Deserialize<ResponseObject>(json);
+                return parsedJson;
+            }
+            catch
+            {
+                Console.WriteLine("Error parsing json response");
+            }
+            return null;
         }
 
-        public async Task<string> Get(string endpoint)
+        /// <summary>
+        /// GetGameStatus always
+        /// </summary>
+        /// <param name="endpoint"></param>
+        /// <returns></returns>
+        public async Task<ResponseObject> Get(string endpoint)
         {
             client = new HttpClient();
 
@@ -36,13 +51,26 @@ namespace TicTacToeBot_EmmaLevi
             string url = baseUrl + endpoint;
 
             var json = await client.GetStringAsync(url);
-
             Console.Write(json);
 
-            return json;
+            try
+            {
+                var parsedJson = JsonSerializer.Deserialize<ResponseObject>(json);
+                return parsedJson;
+            }
+            catch
+            {
+                Console.WriteLine("Error parsing json response");
+            }
+            return null;
         }
 
-        public async Task<string> Put(string endpoint)
+        /// <summary>
+        /// JoinGame always
+        /// </summary>
+        /// <param name="endpoint"></param>
+        /// <returns></returns>
+        public async Task<ResponseObject> Put(string endpoint)
         {
             client = new HttpClient();
 
@@ -55,9 +83,16 @@ namespace TicTacToeBot_EmmaLevi
             var res = await client.PutAsync(url, null);
             var json = await res.Content.ReadAsStringAsync();
 
-            Console.Write(json);
-
-            return json;
+            try
+            {
+                var parsedJson = JsonSerializer.Deserialize<ResponseObject>(json);
+                return parsedJson;
+            }
+            catch
+            {
+                Console.WriteLine("Error parsing json response");
+            }
+            return null;
         }
     }
 }

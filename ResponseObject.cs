@@ -1,20 +1,27 @@
 ﻿namespace TicTacToeBot_EmmaLevi
 {
-    internal class ResponseObject
+    public class ResponseObject
     {
-        public string? PlayerXName { get; set; }
-        public string? PlayerOName { get; set; }
-        public string? RoomCode { get; set; }
-        public int CurrentGameStatus { get; set; }
-        public string? WinnerStatus { get; set; }
-        public string? CurrentTauntFromX { get; set; }
-        public string? CurrentTauntFromO { get; set; }
-        public int PlayerXVictoryCount { get; set; }
-        public int PlayerOVictoryCount { get; set; }
-        public int PlayerXForfeitCount { get; set; }
-        public int PlayerOForfeitCount { get; set; }
-        public int TieGameCount { get; set; }
-        public int CurrentRound { get; set; }
-        public char[][] GameBoard { get; set; }
+        public string? playerXName { get; set; }
+        public string? playerOName { get; set; }
+        public string? roomCode { get; set; }
+        public int currentGameStatus { get; set; }
+        public string? winnerStatus { get; set; }
+        public string? currentTauntFromX { get; set; }
+        public string? currentTauntFromO { get; set; }
+        public int playerXVictoryCount { get; set; }
+        public int playerOVictoryCount { get; set; }
+        public int playerXForfeitCount { get; set; }
+        public int playerOForfeitCount { get; set; }
+        public int tieGameCount { get; set; }
+        public int currentRound { get; set; }
+        public char[][] gameBoard { get; set; }
+    }
+
+    public class PlayerMove
+    {
+        public bool DoesTauntOpponent { get; set; }
+        public int[] Coordinate { get; set; }
+        public string CustomTaunt { get; set; }
     }
 }
