@@ -73,6 +73,7 @@ string playMoveUrl = $"SetMove/{roomCode}/{playerName}";
 string continueUrl = $"Continue/{roomCode}/{playerName}";
 
 int currentRound = 0;
+bool continuedThisRound = true;
 
 while (true)
 {
@@ -84,6 +85,7 @@ while (true)
     }
     else if (playerXorO == 'X' && gameStatusRes.currentGameStatus == 1)
     {
+        continuedThisRound = false;
         // get best move
         int[] bestMoveArr = await bestMoveFinder.getBestMove(gameStatusRes.gameBoard, 'X');
 
@@ -102,6 +104,7 @@ while (true)
     }
     else if (playerXorO == 'O' && gameStatusRes.currentGameStatus == 2)
     {
+        continuedThisRound = false;
         // get best move
         int[] bestMoveArr = await bestMoveFinder.getBestMove(gameStatusRes.gameBoard, 'O');
 
@@ -118,7 +121,7 @@ while (true)
             Console.WriteLine("Failed to post move");
         }
     }
-    else if ((gameStatusRes.currentGameStatus == 0 && currentRound < gameStatusRes.currentRound) || gameStatusRes.currentGameStatus == 3)
+    else if (gameStatusRes.currentGameStatus == 3 || (gameStatusRes.currentGameStatus == 0 && !continuedThisRound))
     {
         // hit continue game endpoint
         var continueResponse = await apiCaller.Post(continueUrl);
@@ -126,10 +129,7 @@ while (true)
         {
             currentRound++;
         }
-    }
-    else if (gameStatusRes.currentGameStatus == 0)
-    {
-
+        continuedThisRound = true;
     }
 
     Thread.Sleep(500);
