@@ -8,7 +8,7 @@ namespace TicTacToeBot_EmmaLevi
     {
         private HttpClient client;
 
-        public async Task<ResponseObject> Post(string endpoint)
+        public async Task<ResponseObject> Post(string endpoint, PlayerMove? body = null)
         {
             client = new HttpClient();
 
@@ -18,7 +18,17 @@ namespace TicTacToeBot_EmmaLevi
             var baseUrl = "https://localhost:7046/";
             string url = baseUrl + endpoint;
 
-            var res = await client.PostAsync(url, null);
+            HttpResponseMessage res = null;
+            if (body != null)
+            {
+                var content = new StringContent(body.ToString());
+                res = await client.PostAsync(url, content);
+            }
+            else
+            {
+                res = await client.PostAsync(url, null);
+            }
+
             var json = await res.Content.ReadAsStringAsync();
 
             Console.Write(json);

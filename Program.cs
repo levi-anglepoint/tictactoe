@@ -23,8 +23,23 @@ while (validInput == false)
 
         // send generate api call
         var response = await apiCaller.Post($"GenerateGame/{playerName}");
-        //roomCode = // parse room code from response
-        // parse player X or O from response
+        if (response is null)
+        {
+            return;
+        }
+
+        roomCode = response.roomCode; // parse room code from response
+        //parse player X or O from response
+        if (response.playerOName == playerName)
+        {
+            Console.WriteLine("You are player 'O'");
+            playerXorO = "O";
+        }
+        else
+        {
+            Console.WriteLine("You are player 'X'");
+            playerXorO = "X";
+        }
     }
     else if (generateOrJoin == "join" || generateOrJoin == "j")
     {
@@ -35,7 +50,17 @@ while (validInput == false)
         // send join api call
         var response = await apiCaller.Put($"JoinGame/{roomCode}/{playerName}");
 
-        // todo: parse player X or O from response
+        // parse player X or O from response
+        if (response.playerOName == playerName)
+        {
+            Console.WriteLine("You are player 'O'");
+            playerXorO = "O";
+        }
+        else
+        {
+            Console.WriteLine("You are player 'X'");
+            playerXorO = "X";
+        }
     }
 }
 
