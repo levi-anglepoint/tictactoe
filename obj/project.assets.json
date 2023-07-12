@@ -8,19 +8,19 @@
     "net7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\LeviThorpe\\.nuget\\packages\\": {}
+    "C:\\Users\\EmmaSwalberg\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LeviThorpe\\source\\repos\\TicTacToeBot\\TicTacToeBot_EmmaLevi\\TicTacToeBot_EmmaLevi.csproj",
+      "projectUniqueName": "C:\\Users\\EmmaSwalberg\\source\\repos\\TicTacToe\\tictactoe\\TicTacToeBot_EmmaLevi.csproj",
       "projectName": "TicTacToeBot_EmmaLevi",
-      "projectPath": "C:\\Users\\LeviThorpe\\source\\repos\\TicTacToeBot\\TicTacToeBot_EmmaLevi\\TicTacToeBot_EmmaLevi.csproj",
-      "packagesPath": "C:\\Users\\LeviThorpe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LeviThorpe\\source\\repos\\TicTacToeBot\\TicTacToeBot_EmmaLevi\\obj\\",
+      "projectPath": "C:\\Users\\EmmaSwalberg\\source\\repos\\TicTacToe\\tictactoe\\TicTacToeBot_EmmaLevi.csproj",
+      "packagesPath": "C:\\Users\\EmmaSwalberg\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\EmmaSwalberg\\source\\repos\\TicTacToe\\tictactoe\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\LeviThorpe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\EmmaSwalberg\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -61,7 +61,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }
