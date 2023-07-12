@@ -1,0 +1,15 @@
+C:\Users\LeviThorpe\source\repos\TicTacToeBot\TicTacToeBot_EmmaLevi\bin\Debug\net7.0\TicTacToeBot_EmmaLevi.exe
+C:\Users\LeviThorpe\source\repos\TicTacToeBot\TicTacToeBot_EmmaLevi\bin\Debug\net7.0\TicTacToeBot_EmmaLevi.deps.json
+C:\Users\LeviThorpe\source\repos\TicTacToeBot\TicTacToeBot_EmmaLevi\bin\Debug\net7.0\TicTacToeBot_EmmaLevi.runtimeconfig.json
+C:\Users\LeviThorpe\source\repos\TicTacToeBot\TicTacToeBot_EmmaLevi\bin\Debug\net7.0\TicTacToeBot_EmmaLevi.dll
+C:\Users\LeviThorpe\source\repos\TicTacToeBot\TicTacToeBot_EmmaLevi\bin\Debug\net7.0\TicTacToeBot_EmmaLevi.pdb
+C:\Users\LeviThorpe\source\repos\TicTacToeBot\TicTacToeBot_EmmaLevi\obj\Debug\net7.0\TicTacToeBot_EmmaLevi.csproj.AssemblyReference.cache
+C:\Users\LeviThorpe\source\repos\TicTacToeBot\TicTacToeBot_EmmaLevi\obj\Debug\net7.0\TicTacToeBot_EmmaLevi.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\LeviThorpe\source\repos\TicTacToeBot\TicTacToeBot_EmmaLevi\obj\Debug\net7.0\TicTacToeBot_EmmaLevi.AssemblyInfoInputs.cache
+C:\Users\LeviThorpe\source\repos\TicTacToeBot\TicTacToeBot_EmmaLevi\obj\Debug\net7.0\TicTacToeBot_EmmaLevi.AssemblyInfo.cs
+C:\Users\LeviThorpe\source\repos\TicTacToeBot\TicTacToeBot_EmmaLevi\obj\Debug\net7.0\TicTacToeBot_EmmaLevi.csproj.CoreCompileInputs.cache
+C:\Users\LeviThorpe\source\repos\TicTacToeBot\TicTacToeBot_EmmaLevi\obj\Debug\net7.0\TicTacToeBot_EmmaLevi.dll
+C:\Users\LeviThorpe\source\repos\TicTacToeBot\TicTacToeBot_EmmaLevi\obj\Debug\net7.0\refint\TicTacToeBot_EmmaLevi.dll
+C:\Users\LeviThorpe\source\repos\TicTacToeBot\TicTacToeBot_EmmaLevi\obj\Debug\net7.0\TicTacToeBot_EmmaLevi.pdb
+C:\Users\LeviThorpe\source\repos\TicTacToeBot\TicTacToeBot_EmmaLevi\obj\Debug\net7.0\TicTacToeBot_EmmaLevi.genruntimeconfig.cache
+C:\Users\LeviThorpe\source\repos\TicTacToeBot\TicTacToeBot_EmmaLevi\obj\Debug\net7.0\ref\TicTacToeBot_EmmaLevi.dll

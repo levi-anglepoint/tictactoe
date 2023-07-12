@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "TicTacToeBot_EmmaLevi/1.0.0": {
+        "runtime": {
+          "TicTacToeBot_EmmaLevi.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TicTacToeBot_EmmaLevi/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
