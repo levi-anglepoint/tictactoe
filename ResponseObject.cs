@@ -18,6 +18,11 @@
         public int tieGameCount { get; set; }
         public int currentRound { get; set; }
         public char[][] gameBoard { get; set; }
+
+        public override string ToString()
+        {
+            return $"[roomCode {roomCode}] [PlayerX {playerXName} {playerXVictoryCount} {playerXLandmineVictoryCount}] [PlayerO {playerOName} {playerOVictoryCount} {playerOLandmineVictoryCount}] ";
+        }
     }
 
     public class PlayerMove
