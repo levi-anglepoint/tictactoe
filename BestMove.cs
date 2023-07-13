@@ -394,8 +394,25 @@
                 return empties[rnd.Next(empties.Count)];
             }
         }
-        public int[] landmineMode(char[][] board, int[] landmineLoc)
+        public int[] landmineMode(char[][] board, int[] landmineLoc, char playerState, bool tryWin = false)
         {
+            if (tryWin)
+            {
+                char opponentState = playerState == 'X' ? 'O' : 'X';
+                int[] wins = BestMove.CheckWin(board, playerState);
+                if (wins != null)
+                {
+                    return wins;
+                }
+
+                int[] blocks = BestMove.CheckWin(board, opponentState);
+
+                if (blocks != null)
+                {
+                    return blocks;
+                }
+            }
+
             List<int[]> empties = GetEmptySquares(board);
             if (empties.Count == 1) {
                 return empties[0];

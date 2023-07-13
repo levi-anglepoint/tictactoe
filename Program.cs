@@ -1,11 +1,12 @@
 ﻿using TicTacToeBot_EmmaLevi;
 
-string playerName = "Emvi"; // green with Emvi
+string playerName = "Blue"; // green with Emvi
 string roomCode = "";
 bool validInput = false;
 APICaller apiCaller = new();
 BestMove bestMoveFinder = new();
 bool useMines = true;
+bool tryWin = true;
 Landmine currentMine = null;
 
 char playerXorO = 'y';
@@ -117,7 +118,7 @@ while (true)
         int[] bestMoveArr = null;
         if (useMines && currentMine != null)
         {
-            bestMoveArr = bestMoveFinder.landmineMode(gameStatusRes.gameBoard, currentMine.Coordinate);
+            bestMoveArr = bestMoveFinder.landmineMode(gameStatusRes.gameBoard,currentMine.Coordinate, playerXorO, tryWin);
         }
         else
         {
