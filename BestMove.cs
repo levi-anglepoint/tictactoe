@@ -32,11 +32,11 @@
 
             if(isFirstPlayer)
             {
-                return MovementFirstPlayer(board);
+                return MovementFirstPlayer(board, playerState);
             }
             else
             {
-                return MovementSecondPlayer(board);
+                return MovementSecondPlayer(board, playerState);
             }
         }
 
@@ -183,27 +183,27 @@
             }
             return mySquares == theirSquares;
         }
-        private static int[] MovementFirstPlayer(char[][] board)
+        private static int[] MovementFirstPlayer(char[][] board, char playerState)
         {
             int[] bestMove;
-            bestMove = CornerStrat(board);
+            bestMove = CornerStrat(board, playerState);
             return bestMove;
 
         }
-        private static int[] MovementSecondPlayer(char[][] board)
+        private static int[] MovementSecondPlayer(char[][] board, char playerState)
         {
             int[] bestMove;
             if (board[0][0] =='\0' && board[0][2] == '\0' && board[2][0] == '\0' && board[2][2] == '\0')
             {
-                bestMove = CornerStrat(board);
+                bestMove = CornerStrat(board, playerState);
             }
             else
             {
-                bestMove = SecondPlayerStrat(board);
+                bestMove = SecondPlayerStrat(board, playerState);
             }
             return bestMove;
         }
-        private static int[] CornerStrat(char[][] board)
+        private static int[] CornerStrat(char[][] board, char playerState)
         {
             //bottom left corner first
             if (board[2][0] == '\0' && board[1][0] == '\0' && board[2][1] == '\0')
@@ -247,13 +247,11 @@
             }
             else
             {
-                List<int[]> empties = GetEmptySquares(board);
-                Random rnd = new Random();
-                return empties[rnd.Next(empties.Count)];
+                return PutSquareNextTo(board, playerState);
             }
 
         }
-        private static int[] SecondPlayerStrat(char[][] board)
+        private static int[] SecondPlayerStrat(char[][] board, char playerState)
         {
             if (board[1][1] == '\0')
             {
@@ -261,10 +259,8 @@
             }
             else
             {
-                List<int[]> empties = GetEmptySquares(board);
-                Random rnd = new Random();
-                return empties[rnd.Next(empties.Count)];
-            }
+               return PutSquareNextTo(board, playerState);
+            } 
         }
         private static List<int[]> GetEmptySquares(char[][] board)
         {
@@ -278,13 +274,126 @@
 
                     if (character == '\0')
                     {
-                         emptySquares.Add(new int[] { i, j });
+                        emptySquares.Add(new int[] { i, j });
                     }
                 }
             }
             return emptySquares;
         }
-
+        private static int[] PutSquareNextTo(char[][] board, char playerState)
+        {
+            //start with top left corner
+            if (board[0][0] == playerState && board[0][1] == '\0' && board[0][2] == '\0')
+            {
+                return (new int[] { 0, 1 });
+            }
+            else if (board[0][0] == playerState && board[1][0] == '\0' && board[2][0] == '\0')
+            {
+                return new int[] { 1, 0 };
+            }
+            else if (board[0][0] == playerState && board[1][1] == '\0' && board[2][2] == '\0')
+            {
+                return new int[] { 1, 1 };
+            }
+            //top middle
+            else if (board[0][1] == playerState && board[0][0] == '\0' && board[0][2] == '\0')
+            {
+                return new int[] { 0, 0 };
+            }
+            else if (board[0][1] == playerState && board[1][1] == '\0' && board[2][1] == '\0')
+            {
+                return new int[] { 1, 1 };
+            }
+            //top right
+            else if (board[0][2] == playerState && board[0][1] == '\0' && board[0][0] == '\0')
+            {
+                return (new int[] { 0, 1 });
+            }
+            else if (board[0][2] == playerState && board[1][2] == '\0' && board[2][2] == '\0')
+            {
+                return new int[] { 1, 2 };
+            }
+            else if (board[0][2] == playerState && board[1][1] == '\0' && board[2][0] == '\0')
+            {
+                return new int[] { 1, 1 };
+            }
+            //middle left
+            else if (board[1][0] == playerState && board[0][0] == '\0' && board[2][0] == '\0')
+            {
+                return new int[] { 0, 0 };
+            }
+            else if (board[1][0] == playerState && board[1][1] == '\0' && board[1][2] == '\0')
+            {
+                return new int[] { 1, 1 };
+            }
+            //middle middle
+            else if (board[1][1] == playerState && board[0][0] == '\0' && board[2][2] == '\0')
+            {
+                return (new int[] { 0, 0 });
+            }
+            else if (board[1][1] == playerState && board[2][0] == '\0' && board[0][2] == '\0')
+            {
+                return new int[] { 0, 2 };
+            }
+            else if (board[1][1] == playerState && board[1][0] == '\0' && board[1][2] == '\0')
+            {
+                return new int[] { 1, 0 };
+            }
+            else if (board[1][1] == playerState && board[0][1] == '\0' && board[2][1] == '\0')
+            {
+                return new int[] { 0, 1 };
+            }
+            //middle right
+            else if (board[1][2] == playerState && board[0][2] == '\0' && board[2][2] == '\0')
+            {
+                return new int[] { 0, 2 };
+            }
+            else if (board[1][2] == playerState && board[1][1] == '\0' && board[1][0] == '\0')
+            {
+                return new int[] { 1, 1 };
+            }
+            //bottom left
+            else if (board[2][0] == playerState && board[1][0] == '\0' && board[0][0] == '\0')
+            {
+                return (new int[] { 1, 0 });
+            }
+            else if (board[2][0] == playerState && board[2][1] == '\0' && board[2][2] == '\0')
+            {
+                return new int[] { 2, 1 };
+            }
+            else if (board[2][0] == playerState && board[1][1] == '\0' && board[0][2] == '\0')
+            {
+                return new int[] { 1, 1 };
+            }
+            //bottom middle
+            else if (board[2][1] == playerState && board[2][0] == '\0' && board[2][2] == '\0')
+            {
+                return new int[] { 2, 0 };
+            }
+            else if (board[2][1] == playerState && board[1][1] == '\0' && board[0][1] == '\0')
+            {
+                return new int[] { 1, 1 };
+            }
+            //bottom right
+            else if (board[2][2] == playerState && board[1][2] == '\0' && board[0][2] == '\0')
+            {
+                return (new int[] { 1, 2 });
+            }
+            else if (board[2][2] == playerState && board[2][1] == '\0' && board[2][0] == '\0')
+            {
+                return new int[] { 2, 1 };
+            }
+            else if (board[2][2] == playerState && board[1][1] == '\0' && board[0][0] == '\0')
+            {
+                return new int[] { 1, 1 };
+            }
+            else
+            {
+                List<int[]> empties = GetEmptySquares(board);
+                Random rnd = new Random();
+                return empties[rnd.Next(empties.Count)];
+            }
+        }
 
 
         public Landmine GetRandomLandmine()
