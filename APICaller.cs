@@ -100,11 +100,11 @@ namespace TicTacToeBot_EmmaLevi
             {
                 string jsonPost = JsonSerializer.Serialize(body);
                 var content = new StringContent(jsonPost, Encoding.UTF8, "application/json");
-                res = await client.PostAsync(url, content);
+                res = await client.PutAsync(url, content);
             }
             else
             {
-                res = await client.PostAsync(url, null);
+                res = await client.PutAsync(url, null);
             }
 
             var json = await res.Content.ReadAsStringAsync();
