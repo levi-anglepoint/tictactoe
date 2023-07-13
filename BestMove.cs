@@ -397,6 +397,9 @@
         public int[] landmineMode(char[][] board, int[] landmineLoc)
         {
             List<int[]> empties = GetEmptySquares(board);
+            if (empties.Count == 1) {
+                return empties[0];
+            }
             int index = 0;
             foreach (int[] loc in empties)
             {
