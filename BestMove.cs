@@ -406,7 +406,10 @@
                 }
                 index++;
             }
-            empties.RemoveAt(index);
+            if(index < empties.Count)
+            {
+                empties.RemoveAt(index);
+            }
             Random rnd = new Random();
             return empties[rnd.Next(empties.Count)];
         }
