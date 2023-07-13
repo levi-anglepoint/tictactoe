@@ -126,7 +126,7 @@ while (true)
         // create move obj
         PlayerMove bestPM = new();
         bestPM.DoesTauntOpponent = true;
-        bestPM.CustomTaunt = "Thy foes have bested thee in tic tac toe";
+        bestPM.CustomTaunt = "You are green with EMVI";
         bestPM.Coordinate = bestMoveArr;
 
         Console.WriteLine($"[{bestPM.Coordinate[0]}, {bestPM.Coordinate[1]}]");
