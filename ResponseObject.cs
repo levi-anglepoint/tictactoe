@@ -11,6 +11,8 @@
         public string? currentTauntFromO { get; set; }
         public int playerXVictoryCount { get; set; }
         public int playerOVictoryCount { get; set; }
+        public int playerXLandmineVictoryCount { get; set; }
+        public int playerOLandmineVictoryCount { get; set; }
         public int playerXForfeitCount { get; set; }
         public int playerOForfeitCount { get; set; }
         public int tieGameCount { get; set; }
