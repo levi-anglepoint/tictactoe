@@ -7,8 +7,8 @@ namespace TicTacToeBot_EmmaLevi
     public class APICaller
     {
         private HttpClient client;
-        private string baseUrl = "https://gamemanager20230712151202.azurewebsites.net/"; // https://gamemanager20230712151202.azurewebsites.net/
-        // "https://localhost:7046/"
+        //private string baseUrl = "https://gamemanager20230712151202.azurewebsites.net/"; // https://gamemanager20230712151202.azurewebsites.net/
+        private string baseUrl = "https://localhost:7046/"; // https://localhost:7046/
 
         public async Task<ResponseObject> Post(string endpoint, object? body = null)
         {
@@ -28,7 +28,10 @@ namespace TicTacToeBot_EmmaLevi
             }
             else
             {
-                res = await client.PostAsync(url, null);
+                Landmine mine = new Landmine();
+                string jsonPost = JsonSerializer.Serialize(mine);
+                var content = new StringContent(jsonPost, Encoding.UTF8, "application/json");
+                res = await client.PostAsync(url, content);
             }
 
             if (!res.IsSuccessStatusCode)
@@ -105,7 +108,10 @@ namespace TicTacToeBot_EmmaLevi
             }
             else
             {
-                res = await client.PutAsync(url, null);
+                Landmine mine = new Landmine();
+                string jsonPost = JsonSerializer.Serialize(mine);
+                var content = new StringContent(jsonPost, Encoding.UTF8, "application/json");
+                res = await client.PutAsync(url, content);
             }
 
             var json = await res.Content.ReadAsStringAsync();

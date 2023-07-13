@@ -6,6 +6,7 @@ bool validInput = false;
 APICaller apiCaller = new();
 BestMove bestMoveFinder = new();
 bool useMines = true;
+Landmine currentMine = null;
 
 char playerXorO = 'y';
 string generateUrl = $"GenerateGame/{playerName}";
@@ -29,6 +30,7 @@ while (validInput == false)
         if (useMines)
         {
             Landmine mine = bestMoveFinder.GetRandomLandmine();
+            currentMine = mine;
             response = await apiCaller.Post(generateUrl, mine);
         }
         else
@@ -65,6 +67,7 @@ while (validInput == false)
         if (useMines)
         {
             Landmine mine = bestMoveFinder.GetRandomLandmine();
+            currentMine = mine;
             response = await apiCaller.Put(joinUrl, mine);
         }
         else
@@ -107,8 +110,16 @@ while (true)
     else if ((playerXorO == 'X' && gameStatusRes.currentGameStatus == 1) || (playerXorO == 'O' && gameStatusRes.currentGameStatus == 2))
     {
         continuedThisRound = false;
-        // get best move
-        int[] bestMoveArr = await bestMoveFinder.getBestMove(gameStatusRes.gameBoard, playerXorO);
+        int[] bestMoveArr = null;
+        if (useMines && currentMine != null)
+        {
+            bestMoveArr = bestMoveFinder.landmineMode(gameStatusRes.gameBoard, currentMine.Coordinate);
+        }
+        else
+        {
+            // get best move
+            bestMoveArr = await bestMoveFinder.getBestMove(gameStatusRes.gameBoard, playerXorO);
+        }
 
         // create move obj
         PlayerMove bestPM = new();
@@ -132,6 +143,7 @@ while (true)
         if (useMines)
         {
             Landmine mine = bestMoveFinder.GetRandomLandmine();
+            currentMine = mine;
             continueResponse = await apiCaller.Post(continueUrl, mine);
         }
         else
@@ -141,11 +153,13 @@ while (true)
         if (continueResponse != null)
         {
             currentRound++;
+            Console.WriteLine("Continue new game");
+            Console.WriteLine(continueResponse.ToString());
         }
         continuedThisRound = true;
     }
 
-    Thread.Sleep(500);
+    Thread.Sleep(250);
 }
 
 
