@@ -5,7 +5,7 @@ string roomCode = "";
 bool validInput = false;
 APICaller apiCaller = new();
 BestMove bestMoveFinder = new();
-bool useMines = false;
+bool useMines = true;
 Landmine currentMine = null;
 
 char playerXorO = 'y';
