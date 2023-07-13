@@ -394,7 +394,7 @@
                 return empties[rnd.Next(empties.Count)];
             }
         }
-        private static int[] landmineMode(char[][] board, int[] landmineLoc)
+        public int[] landmineMode(char[][] board, int[] landmineLoc)
         {
             List<int[]> empties = GetEmptySquares(board);
             int index = 0;
