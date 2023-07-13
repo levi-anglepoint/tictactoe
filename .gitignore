@@ -194,3 +194,14 @@ obj
 obj/*
 obj/
 /.vs/TicTacToeBot_EmmaLevi/v17/.suo
+/bin/Debug/net7.0/TicTacToeBot_EmmaLevi.dll
+/bin/Debug/net7.0/TicTacToeBot_EmmaLevi.pdb
+/obj/Debug/net7.0/TicTacToeBot_EmmaLevi.assets.cache
+/obj/Debug/net7.0/TicTacToeBot_EmmaLevi.dll
+/obj/Debug/net7.0/TicTacToeBot_EmmaLevi.GeneratedMSBuildEditorConfig.editorconfig
+/obj/Debug/net7.0/TicTacToeBot_EmmaLevi.genruntimeconfig.cache
+/obj/Debug/net7.0/TicTacToeBot_EmmaLevi.pdb
+/obj/project.assets.json
+/obj/project.nuget.cache
+/obj/TicTacToeBot_EmmaLevi.csproj.nuget.dgspec.json
+/obj/TicTacToeBot_EmmaLevi.csproj.nuget.g.props
