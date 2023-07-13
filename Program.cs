@@ -9,7 +9,6 @@ bool useMines = true;
 
 char playerXorO = 'y';
 string generateUrl = $"GenerateGame/{playerName}";
-string joinUrl = $"JoinGame/{roomCode}/{playerName}";
 
 while (validInput == false)
 {
@@ -60,6 +59,7 @@ while (validInput == false)
         Console.WriteLine("Enter room code:");
         roomCode = Console.ReadLine();
 
+        string joinUrl = $"JoinGame/{roomCode}/{playerName}";
         // send join api call
         ResponseObject response = null;
         if (useMines)
