@@ -5,8 +5,11 @@ string roomCode = "";
 bool validInput = false;
 APICaller apiCaller = new();
 BestMove bestMoveFinder = new();
+bool useMines = true;
 
 char playerXorO = 'y';
+string generateUrl = $"GenerateGame/{playerName}";
+string joinUrl = $"JoinGame/{roomCode}/{playerName}";
 
 while (validInput == false)
 {
@@ -23,7 +26,16 @@ while (validInput == false)
         validInput = true;
 
         // send generate api call
-        var response = await apiCaller.Post($"GenerateGame/{playerName}");
+        ResponseObject response = null;
+        if (useMines)
+        {
+            Landmine mine = bestMoveFinder.GetRandomLandmine();
+            response = await apiCaller.Post(generateUrl, mine);
+        }
+        else
+        {
+            response = await apiCaller.Post(generateUrl);
+        }
         if (response is null)
         {
             return;
@@ -49,7 +61,16 @@ while (validInput == false)
         roomCode = Console.ReadLine();
 
         // send join api call
-        var response = await apiCaller.Put($"JoinGame/{roomCode}/{playerName}");
+        ResponseObject response = null;
+        if (useMines)
+        {
+            Landmine mine = bestMoveFinder.GetRandomLandmine();
+            await apiCaller.Put(joinUrl, mine);
+        }
+        else
+        {
+            await apiCaller.Put(joinUrl);
+        }
 
         // parse player X or O from response
         if (response.playerOName == playerName)
@@ -74,8 +95,6 @@ string continueUrl = $"Continue/{roomCode}/{playerName}";
 
 int currentRound = 0;
 bool continuedThisRound = true;
-
-bool useMines = true;
 
 while (true)
 {
