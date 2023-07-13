@@ -5,7 +5,7 @@ string roomCode = "";
 bool validInput = false;
 APICaller apiCaller = new();
 BestMove bestMoveFinder = new();
-bool useMines = true;
+bool useMines = false;
 Landmine currentMine = null;
 
 char playerXorO = 'y';
@@ -100,6 +100,7 @@ string continueUrl = $"Continue/{roomCode}/{playerName}";
 
 int currentRound = 0;
 bool continuedThisRound = true;
+int continueLoopCount = 0;
 
 while (true)
 {
@@ -111,6 +112,7 @@ while (true)
     }
     else if ((playerXorO == 'X' && gameStatusRes.currentGameStatus == 1) || (playerXorO == 'O' && gameStatusRes.currentGameStatus == 2))
     {
+        continueLoopCount = 10;
         continuedThisRound = false;
         int[] bestMoveArr = null;
         if (useMines && currentMine != null)
@@ -160,6 +162,14 @@ while (true)
             Console.WriteLine(continueResponse.ToString());
         }
         continuedThisRound = true;
+    }
+    else if (gameStatusRes.currentGameStatus == 0)
+    {
+        continueLoopCount++;
+        if (continueLoopCount > 20)
+        {
+            continuedThisRound = false;
+        }
     }
 
     Thread.Sleep(250);
