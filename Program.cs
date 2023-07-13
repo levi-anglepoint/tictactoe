@@ -65,11 +65,11 @@ while (validInput == false)
         if (useMines)
         {
             Landmine mine = bestMoveFinder.GetRandomLandmine();
-            await apiCaller.Put(joinUrl, mine);
+            response = await apiCaller.Put(joinUrl, mine);
         }
         else
         {
-            await apiCaller.Put(joinUrl);
+            response = await apiCaller.Put(joinUrl);
         }
 
         // parse player X or O from response
