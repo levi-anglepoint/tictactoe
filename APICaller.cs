@@ -7,7 +7,8 @@ namespace TicTacToeBot_EmmaLevi
     public class APICaller
     {
         private HttpClient client;
-        private string baseUrl = "https://localhost:7046/";
+        private string baseUrl = "https://gamemanager20230712151202.azurewebsites.net/"; // https://gamemanager20230712151202.azurewebsites.net/
+        // "https://localhost:7046/"
 
         public async Task<ResponseObject> Post(string endpoint, object? body = null)
         {
