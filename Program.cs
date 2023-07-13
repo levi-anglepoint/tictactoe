@@ -31,6 +31,7 @@ while (validInput == false)
         {
             Landmine mine = bestMoveFinder.GetRandomLandmine();
             currentMine = mine;
+            Console.WriteLine($"landmine at [{currentMine.Coordinate[0]},{currentMine.Coordinate[1]}]");
             response = await apiCaller.Post(generateUrl, mine);
         }
         else
@@ -68,6 +69,7 @@ while (validInput == false)
         {
             Landmine mine = bestMoveFinder.GetRandomLandmine();
             currentMine = mine;
+            Console.WriteLine($"landmine at [{currentMine.Coordinate[0]},{currentMine.Coordinate[1]}]");
             response = await apiCaller.Put(joinUrl, mine);
         }
         else
@@ -144,6 +146,7 @@ while (true)
         {
             Landmine mine = bestMoveFinder.GetRandomLandmine();
             currentMine = mine;
+            Console.WriteLine($"landmine at [{currentMine.Coordinate[0]},{currentMine.Coordinate[1]}]");
             continueResponse = await apiCaller.Post(continueUrl, mine);
         }
         else

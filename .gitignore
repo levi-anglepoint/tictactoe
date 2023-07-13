@@ -209,3 +209,5 @@ obj/
 /obj/project.nuget.cache
 /obj/TicTacToeBot_EmmaLevi.csproj.nuget.dgspec.json
 /obj/TicTacToeBot_EmmaLevi.csproj.nuget.g.props
+/obj/Debug/net7.0/ref/TicTacToeBot_EmmaLevi.dll
+/obj/Debug/net7.0/refint/TicTacToeBot_EmmaLevi.dll
