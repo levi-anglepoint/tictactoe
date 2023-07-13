@@ -284,5 +284,53 @@
             }
             return emptySquares;
         }
+
+
+
+        public Landmine GetRandomLandmine()
+        {
+            var random = new Random();
+            int spot = random.Next(9);
+
+            Landmine randoMine = new();
+
+            if (spot == 0)
+            {
+                randoMine.Coordinate = new int[] { 0, 0, };
+            }
+            else if (spot == 1)
+            {
+                randoMine.Coordinate = new int[] { 0, 1, };
+            }
+            else if (spot == 2)
+            {
+                randoMine.Coordinate = new int[] { 0, 2, };
+            }
+            else if (spot == 3)
+            {
+                randoMine.Coordinate = new int[] { 1, 0, };
+            }
+            else if (spot == 4)
+            {
+                randoMine.Coordinate = new int[] { 1, 1, };
+            }
+            else if (spot == 5)
+            {
+                randoMine.Coordinate = new int[] { 1, 2, };
+            }
+            else if (spot == 6)
+            {
+                randoMine.Coordinate = new int[] { 2, 0, };
+            }
+            else if (spot == 7)
+            {
+                randoMine.Coordinate = new int[] { 2, 1, };
+            }
+            else if (spot == 8)
+            {
+                randoMine.Coordinate = new int[] { 2, 2, };
+            }
+            return randoMine;
+        }
     }
 }

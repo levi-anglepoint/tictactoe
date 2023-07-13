@@ -75,6 +75,8 @@ string continueUrl = $"Continue/{roomCode}/{playerName}";
 int currentRound = 0;
 bool continuedThisRound = true;
 
+bool useMines = true;
+
 while (true)
 {
     var gameStatusRes = await apiCaller.Get(gameStatusUrl);
@@ -106,8 +108,17 @@ while (true)
     }
     else if (gameStatusRes.currentGameStatus == 3 || (gameStatusRes.currentGameStatus == 0 && !continuedThisRound))
     {
+        ResponseObject continueResponse = null;
         // hit continue game endpoint
-        var continueResponse = await apiCaller.Post(continueUrl);
+        if (useMines)
+        {
+            Landmine mine = bestMoveFinder.GetRandomLandmine();
+            continueResponse = await apiCaller.Post(continueUrl, mine);
+        }
+        else
+        {
+            continueResponse = await apiCaller.Post(continueUrl);
+        }
         if (continueResponse != null)
         {
             currentRound++;

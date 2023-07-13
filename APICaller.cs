@@ -9,7 +9,7 @@ namespace TicTacToeBot_EmmaLevi
     {
         private HttpClient client;
 
-        public async Task<ResponseObject> Post(string endpoint, PlayerMove? body = null)
+        public async Task<ResponseObject> Post(string endpoint, object? body = null)
         {
             client = new HttpClient();
 

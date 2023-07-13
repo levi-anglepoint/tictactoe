@@ -24,4 +24,8 @@
         public int[] Coordinate { get; set; }
         public string CustomTaunt { get; set; }
     }
+    public class Landmine
+    {
+        public int[] Coordinate { get; set; }
+    }
 }
