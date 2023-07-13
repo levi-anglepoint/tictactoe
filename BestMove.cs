@@ -394,7 +394,22 @@
                 return empties[rnd.Next(empties.Count)];
             }
         }
-
+        private static int[] landmineMode(char[][] board, int[] landmineLoc)
+        {
+            List<int[]> empties = GetEmptySquares(board);
+            int index = 0;
+            foreach (int[] loc in empties)
+            {
+                if(loc[0] == landmineLoc[0] && loc[1] == landmineLoc[1])
+                {
+                    break;
+                }
+                index++;
+            }
+            empties.RemoveAt(index);
+            Random rnd = new Random();
+            return empties[rnd.Next(empties.Count)];
+        }
 
         public Landmine GetRandomLandmine()
         {
