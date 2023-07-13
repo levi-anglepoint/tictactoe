@@ -196,6 +196,10 @@ obj/
 /.vs/TicTacToeBot_EmmaLevi/v17/.suo
 /bin/Debug/net7.0/TicTacToeBot_EmmaLevi.dll
 /bin/Debug/net7.0/TicTacToeBot_EmmaLevi.pdb
+/obj/Debug/net7.0/TicTacToeBot_EmmaLevi.dll
+/obj/Debug/net7.0/TicTacToeBot_EmmaLevi.pdb
+/bin/Debug/net7.0/TicTacToeBot_EmmaLevi.dll
+/bin/Debug/net7.0/TicTacToeBot_EmmaLevi.pdb
 /obj/Debug/net7.0/TicTacToeBot_EmmaLevi.assets.cache
 /obj/Debug/net7.0/TicTacToeBot_EmmaLevi.dll
 /obj/Debug/net7.0/TicTacToeBot_EmmaLevi.GeneratedMSBuildEditorConfig.editorconfig
