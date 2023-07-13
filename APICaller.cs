@@ -1,5 +1,4 @@
 ﻿using System.Net.Http.Headers;
-using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 
@@ -8,6 +7,7 @@ namespace TicTacToeBot_EmmaLevi
     public class APICaller
     {
         private HttpClient client;
+        private string baseUrl = "https://localhost:7046/";
 
         public async Task<ResponseObject> Post(string endpoint, object? body = null)
         {
@@ -16,7 +16,6 @@ namespace TicTacToeBot_EmmaLevi
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json")); // text/plain // application/json
 
-            var baseUrl = "https://localhost:7046/";
             string url = baseUrl + endpoint;
 
             HttpResponseMessage res = null;
@@ -67,7 +66,6 @@ namespace TicTacToeBot_EmmaLevi
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json")); // text/plain // application/json
 
-            var baseUrl = "https://localhost:7046/";
             string url = baseUrl + endpoint;
 
             var json = await client.GetStringAsync(url);
@@ -89,17 +87,26 @@ namespace TicTacToeBot_EmmaLevi
         /// </summary>
         /// <param name="endpoint"></param>
         /// <returns></returns>
-        public async Task<ResponseObject> Put(string endpoint)
+        public async Task<ResponseObject> Put(string endpoint, object? body = null)
         {
             client = new HttpClient();
 
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json")); // text/plain // application/json
 
-            var baseUrl = "https://localhost:7046/";
             string url = baseUrl + endpoint;
+            HttpResponseMessage res = null;
+            if (body != null)
+            {
+                string jsonPost = JsonSerializer.Serialize(body);
+                var content = new StringContent(jsonPost, Encoding.UTF8, "application/json");
+                res = await client.PostAsync(url, content);
+            }
+            else
+            {
+                res = await client.PostAsync(url, null);
+            }
 
-            var res = await client.PutAsync(url, null);
             var json = await res.Content.ReadAsStringAsync();
 
             try
