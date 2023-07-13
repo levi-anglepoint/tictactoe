@@ -166,9 +166,10 @@ while (true)
     else if (gameStatusRes.currentGameStatus == 0)
     {
         continueLoopCount++;
-        if (continueLoopCount > 20)
+        if (continueLoopCount > 30)
         {
             continuedThisRound = false;
+            continueLoopCount = 10;
         }
     }
 
